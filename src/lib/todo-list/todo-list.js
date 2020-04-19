@@ -17,6 +17,7 @@ export class TodoList extends React.Component {
           index={index}
           todo={todo}
           todoOnChange={(todo, index) => this.todoOnChange(todo, index)}
+          removeTodo={() => this.props.removeTodo(index)}
         />
       );
     });

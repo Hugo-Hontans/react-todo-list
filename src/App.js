@@ -15,6 +15,12 @@ class App extends React.Component {
     this.setState({ todos: [...this.state.todos, ""] });
   }
 
+  removeTodo(index) {
+    const todos = this.state.todos;
+    todos.splice(index, 1);
+    this.setState({ todos });
+  }
+
   onChange(todos) {
     this.setState({ todos });
   }
@@ -25,6 +31,7 @@ class App extends React.Component {
         <TodoList
           todos={this.state.todos}
           onChange={(todos) => this.onChange(todos)}
+          removeTodo={(index) => this.removeTodo(index)}
         />
         <TodoAdd addTodo={() => this.addTodo()} />
       </section>
