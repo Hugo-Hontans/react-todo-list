@@ -3,6 +3,7 @@ import "./App.css";
 import { TodoList } from "./lib/todo-list/todo-list.js";
 import { TodoAdd } from "./lib/todo-add/todo-add";
 import { TodoSend } from "./lib/todo-send/todo-send";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -33,15 +34,16 @@ class App extends React.Component {
 
   render() {
     return (
-      <section>
+      <section className="container">
         <TodoList
+          className="row"
           todos={this.state.todos}
           onChange={(todos) => this.onChange(todos)}
           removeTodo={(index) => this.removeTodo(index)}
         />
         <TodoAdd addTodo={() => this.addTodo()} />
-        <article className="send">
-          <TodoSend sendTodos={() => this.sendTodos()}></TodoSend>
+        <article className="send container">
+          <TodoSend className="row" sendTodos={() => this.sendTodos()}></TodoSend>
         </article>
       </section>
     );
