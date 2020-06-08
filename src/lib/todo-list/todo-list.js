@@ -18,6 +18,8 @@ export class TodoList extends React.Component {
           todo={todo}
           todoOnChange={(todo, index) => this.todoOnChange(todo, index)}
           removeTodo={() => this.props.removeTodo(index)}
+          upTodo={() => this.props.upTodo(index)}
+          downTodo={() => this.props.downTodo(index)}
         />
       );
     });

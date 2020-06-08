@@ -17,6 +17,13 @@ class App extends React.Component {
     this.setState({ todos: [...this.state.todos, ""] });
   }
 
+  moveTodo(index, direction) {
+    const todos = this.state.todos;
+    const newIndex = direction >= 0 ? index + 1 : index - 1;
+    todos.splice(newIndex, 0, todos.splice(index, 1)[0]);
+    this.setState({ todos });
+  }
+
   removeTodo(index) {
     const todos = this.state.todos;
     todos.splice(index, 1);
@@ -41,6 +48,8 @@ class App extends React.Component {
           todos={this.state.todos}
           onChange={(todos) => this.onChange(todos)}
           removeTodo={(index) => this.removeTodo(index)}
+          upTodo={(index) => this.moveTodo(index, -1)}
+          downTodo={(index) => this.moveTodo(index, +1)}
         />
         <TodoAdd addTodo={() => this.addTodo()} />
         <article className="send">

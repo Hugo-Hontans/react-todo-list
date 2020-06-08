@@ -1,6 +1,7 @@
 import React from "react";
 import "./todo-item.css";
 import { TodoRemove } from "../todo-remove/todo-remove.js";
+import { TodoMove } from "../todo-move/todo-move.js";
 
 export class TodoItem extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ export class TodoItem extends React.Component {
   render() {
     return (
       <div>
+        <TodoMove upTodo={() => this.props.upTodo()} downTodo={() => this.props.downTodo()} ></TodoMove>
         <input
           type="text"
           value={this.props.todo}
