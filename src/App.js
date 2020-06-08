@@ -34,7 +34,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <section className="container">
+      <section className="container text-center">
         <TodoList
           className="row"
           todos={this.state.todos}
@@ -42,8 +42,8 @@ class App extends React.Component {
           removeTodo={(index) => this.removeTodo(index)}
         />
         <TodoAdd addTodo={() => this.addTodo()} />
-        <article className="send container">
-          <TodoSend className="row" sendTodos={() => this.sendTodos()}></TodoSend>
+        <article className="send">
+          <TodoSend sendTodos={() => this.sendTodos()}></TodoSend>
         </article>
       </section>
     );

@@ -5,6 +5,6 @@ import Button from 'react-bootstrap/Button';
 
 export function TodoSend(props) {
     return (
-        <Button onClick={ props.sendTodos }>Send</Button>
+        <Button variant="success" onClick={ props.sendTodos }>Send</Button>
     ); 
 }
