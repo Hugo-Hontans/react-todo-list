@@ -35,6 +35,7 @@ class App extends React.Component {
   render() {
     return (
       <section className="container text-center">
+        <h1 className="title">TODO LIST</h1>
         <TodoList
           className="row"
           todos={this.state.todos}
