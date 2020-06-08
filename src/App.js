@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { TodoList } from "./lib/todo-list/todo-list.js";
 import { TodoAdd } from "./lib/todo-add/todo-add";
+import { TodoSend } from "./lib/todo-send/todo-send";
 
 class App extends React.Component {
   constructor(props) {
@@ -21,6 +22,11 @@ class App extends React.Component {
     this.setState({ todos });
   }
 
+  sendTodos() {
+    const todos = this.state.todos;
+    console.log(todos);
+  }
+
   onChange(todos) {
     this.setState({ todos });
   }
@@ -34,6 +40,9 @@ class App extends React.Component {
           removeTodo={(index) => this.removeTodo(index)}
         />
         <TodoAdd addTodo={() => this.addTodo()} />
+        <article className="send">
+          <TodoSend sendTodos={() => this.sendTodos()}></TodoSend>
+        </article>
       </section>
     );
   }
