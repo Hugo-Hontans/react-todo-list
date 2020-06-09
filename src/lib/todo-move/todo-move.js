@@ -4,14 +4,32 @@ import Button from "react-bootstrap/Button";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 
 export function TodoMove(props) {
-  return (
-    <span>
-      <Button variant="secondary" onClick={props.upTodo}>
-        <FaArrowUp />
-      </Button>
-      <Button className="down" variant="secondary" onClick={props.downTodo}>
-        <FaArrowDown />
-      </Button>
-    </span>
-  );
+  if (props.position === "first") {
+    return (
+      <span>
+        <Button className="right" variant="secondary" onClick={props.downTodo}>
+          <FaArrowDown />
+        </Button>
+      </span>
+    );
+  } else if (props.position === "last") {
+    return (
+      <span>
+        <Button className="right" variant="secondary" onClick={props.upTodo}>
+          <FaArrowUp />
+        </Button>
+      </span>
+    );
+  } else {
+    return (
+      <span>
+        <Button variant="secondary" onClick={props.upTodo}>
+          <FaArrowUp />
+        </Button>
+        <Button className="right" variant="secondary" onClick={props.downTodo}>
+          <FaArrowDown />
+        </Button>
+      </span>
+    );
+  }
 }

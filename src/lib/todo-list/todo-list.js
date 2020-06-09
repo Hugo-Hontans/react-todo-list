@@ -11,10 +11,18 @@ export class TodoList extends React.Component {
 
   render() {
     return this.props.todos.map((todo, index) => {
+      let position;
+      if (index === 0) {
+        position = 'first';
+      }
+      if (index === (this.props.todos.length - 1)) {
+        position = 'last';
+      }
       return (
         <TodoItem
           key={index}
           index={index}
+          position={position}
           todo={todo}
           todoOnChange={(todo, index) => this.todoOnChange(todo, index)}
           removeTodo={() => this.props.removeTodo(index)}

@@ -17,7 +17,7 @@ export class TodoItem extends React.Component {
   render() {
     return (
       <div>
-        <TodoMove upTodo={() => this.props.upTodo()} downTodo={() => this.props.downTodo()} ></TodoMove>
+        <TodoMove position={this.props.position} upTodo={() => this.props.upTodo()} downTodo={() => this.props.downTodo()} ></TodoMove>
         <input
           type="text"
           value={this.props.todo}
