@@ -1,8 +1,5 @@
 import React from "react";
 import "./App.css";
-import { TodoList } from "./lib/todo-list/todo-list.js";
-import { TodoAdd } from "./lib/todo-add/todo-add";
-import { TodoSend } from "./lib/todo-send/todo-send";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
@@ -10,6 +7,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { TodoView } from "./lib/todo-view/todo-view";
 
 class App extends React.Component {
   constructor(props) {
@@ -66,21 +64,16 @@ class App extends React.Component {
             </section>
           </Route>
           <Route path="/todo">
-            <section className="container text-center">
-              <h1 className="title">TODO LIST</h1>
-              <TodoList
-                className="row"
-                todos={this.state.todos}
-                onChange={(todos) => this.onChange(todos)}
-                removeTodo={(index) => this.removeTodo(index)}
-                upTodo={(index) => this.moveTodo(index, -1)}
-                downTodo={(index) => this.moveTodo(index, +1)}
-              />
-              <TodoAdd addTodo={() => this.addTodo()} />
-              <article className="send">
-                <TodoSend sendTodos={() => this.sendTodos()}></TodoSend>
-              </article>
-            </section>
+            <TodoView
+              todos={this.state.todos}
+              onChange={(todos) => this.onChange(todos)}
+              removeTodo={(index) => this.removeTodo(index)}
+              upTodo={(index) => this.moveTodo(index, -1)}
+              downTodo={(index) => this.moveTodo(index, +1)}
+              addTodo={() => this.addTodo()}
+              sendTodos={() => this.sendTodos()}
+            >
+            </TodoView>
           </Route>
         </Switch>
       </Router>
