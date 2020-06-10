@@ -7,7 +7,7 @@ export function TodoMove(props) {
   if (props.position === "first") {
     return (
       <div className="group">
-        <Button className="right" variant="secondary" onClick={props.downTodo}>
+        <Button className="arrow" size="sm" variant="secondary" onClick={props.downTodo}>
           <FaArrowDown />
         </Button>
       </div>
@@ -15,7 +15,7 @@ export function TodoMove(props) {
   } else if (props.position === "last") {
     return (
       <div className="group">
-        <Button className="right" variant="secondary" onClick={props.upTodo}>
+        <Button className="arrow" size="sm" variant="secondary" onClick={props.upTodo}>
           <FaArrowUp />
         </Button>
       </div>
@@ -23,10 +23,10 @@ export function TodoMove(props) {
   } else {
     return (
       <div className="group">
-        <Button variant="secondary" onClick={props.upTodo}>
+        <Button className="arrow" variant="secondary" size="sm" onClick={props.upTodo}>
           <FaArrowUp />
         </Button>
-        <Button className="right" variant="secondary" onClick={props.downTodo}>
+        <Button className="arrow" size="sm" variant="secondary" onClick={props.downTodo}>
           <FaArrowDown />
         </Button>
       </div>

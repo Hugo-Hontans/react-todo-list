@@ -6,7 +6,7 @@ import { FaTrash } from "react-icons/fa";
 
 export function TodoRemove(props) {
     return (
-        <Button className="remove-button" variant="danger" onClick={props.removeTodo}>
+        <Button className="remove-button" size="sm" variant="danger" onClick={props.removeTodo}>
             <FaTrash />
         </Button>
     ); 
