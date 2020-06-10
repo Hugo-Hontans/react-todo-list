@@ -6,30 +6,30 @@ import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 export function TodoMove(props) {
   if (props.position === "first") {
     return (
-      <span>
+      <div className="group">
         <Button className="right" variant="secondary" onClick={props.downTodo}>
           <FaArrowDown />
         </Button>
-      </span>
+      </div>
     );
   } else if (props.position === "last") {
     return (
-      <span>
+      <div className="group">
         <Button className="right" variant="secondary" onClick={props.upTodo}>
           <FaArrowUp />
         </Button>
-      </span>
+      </div>
     );
   } else {
     return (
-      <span>
+      <div className="group">
         <Button variant="secondary" onClick={props.upTodo}>
           <FaArrowUp />
         </Button>
         <Button className="right" variant="secondary" onClick={props.downTodo}>
           <FaArrowDown />
         </Button>
-      </span>
+      </div>
     );
   }
 }

@@ -16,14 +16,20 @@ export class TodoItem extends React.Component {
 
   render() {
     return (
-      <div>
-        <TodoMove position={this.props.position} upTodo={() => this.props.upTodo()} downTodo={() => this.props.downTodo()} ></TodoMove>
-        <input
-          type="text"
-          value={this.props.todo}
-          onChange={this.handleChange}
-        ></input>
-        <TodoRemove removeTodo={() => this.props.removeTodo()} /> 
+      <div className="container item">
+        <div className="row justify-content-center">
+          <TodoMove
+            position={this.props.position}
+            upTodo={() => this.props.upTodo()}
+            downTodo={() => this.props.downTodo()}
+          ></TodoMove>
+          <input
+            type="text"
+            value={this.props.todo}
+            onChange={this.handleChange}
+          ></input>
+          <TodoRemove removeTodo={() => this.props.removeTodo()} />
+        </div>
       </div>
     );
   }
