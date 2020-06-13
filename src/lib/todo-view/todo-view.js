@@ -12,7 +12,7 @@ export function TodoView(props) {
     throw new Error('This todoList doesn\'t exist');
   }
   return (
-    <section className="container text-center">
+    <div>
       <h1 className="title">TODO LIST</h1>
       <TodoList
         className="row"
@@ -28,6 +28,6 @@ export function TodoView(props) {
       <article className="send">
         <TodoSend sendTodos={() => props.sendTodos()}></TodoSend>
       </article>
-    </section>
+    </div>
   );
 }
