@@ -13,30 +13,50 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: ["coucou", "super list"],
+      todoList: [
+        {
+          id: 'firstId',
+          name: 'first todo',
+          todos: ["coucou", "super list"]
+        },
+        {
+          id: 'secondId',
+          name: 'second todo',
+          todos: ["New todo"]
+        },
+      ]
     };
   }
 
-  addTodo() {
-    this.setState({ todos: [...this.state.todos, ""] });
+  changeTodo(todoToChange) {
+    const index = this.state.todoList.findIndex(todo => todo.id === todoToChange.id);
+    const todoList = this.state.todoList;
+    todoList[index] = todoToChange;
+    this.setState({ todoList });
   }
 
-  moveTodo(index, direction) {
-    const todos = this.state.todos;
+  addTodo(id) {
+    const todo = this.state.todoList.find(todo => todo.id === id);
+    todo.todos = [...todo.todos, ""];
+    this.changeTodo(todo);
+  }
+
+  moveTodo(index, direction, id) {
+    const todo = this.state.todoList.find(todo => todo.id === id);
     const newIndex = direction >= 0 ? index + 1 : index - 1;
-    todos.splice(newIndex, 0, todos.splice(index, 1)[0]);
-    this.setState({ todos });
+    todo.todos.splice(newIndex, 0, todo.todos.splice(index, 1)[0]);
+    this.changeTodo(todo);
   }
 
-  removeTodo(index) {
-    const todos = this.state.todos;
-    todos.splice(index, 1);
-    this.setState({ todos });
+  removeTodo(index, id) {
+    const todo = this.state.todoList.find(todo => todo.id === id);
+    todo.todos.splice(index, 1);
+    this.changeTodo(todo);
   }
 
   sendTodos() {
-    const todos = this.state.todos;
-    console.log(todos);
+    const todoList = this.state.todoList;
+    console.log(todoList);
   }
 
   onChange(todos) {
@@ -51,9 +71,15 @@ class App extends React.Component {
             <li>
               <Link to="/">Home</Link>
             </li>
-            <li>
-              <Link to="/todo">Todo List</Link>
-            </li>
+            {
+              this.state.todoList.map((list) => {
+                return (
+                  <li>
+                    <Link to={`/todo/${list.id}`}>Todo List</Link>
+                  </li>
+                )
+              })
+            }
           </ul>
         </nav>
 
@@ -63,14 +89,14 @@ class App extends React.Component {
               <h1>Home</h1>
             </section>
           </Route>
-          <Route path="/todo">
+          <Route path="/todo/:id">
             <TodoView
-              todos={this.state.todos}
+              todos={this.state.todoList}
               onChange={(todos) => this.onChange(todos)}
-              removeTodo={(index) => this.removeTodo(index)}
-              upTodo={(index) => this.moveTodo(index, -1)}
-              downTodo={(index) => this.moveTodo(index, +1)}
-              addTodo={() => this.addTodo()}
+              removeTodo={(index, id) => this.removeTodo(index, id)}
+              upTodo={(index, id) => this.moveTodo(index, -1, id)}
+              downTodo={(index, id) => this.moveTodo(index, +1, id)}
+              addTodo={(id) => this.addTodo(id)}
               sendTodos={() => this.sendTodos()}
             >
             </TodoView>
