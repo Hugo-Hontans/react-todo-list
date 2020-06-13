@@ -9,6 +9,10 @@ export class TodoListAdd extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  resetInput() {
+    this.setState({ value: "" });
+  }
+
   handleChange(event) {
     this.setState({ value: event.target.value });
   }
@@ -22,7 +26,10 @@ export class TodoListAdd extends React.Component {
           onChange={this.handleChange}
         ></input>
         <TodoAdd
-          addTodo={() => this.props.addListTodo(this.state.value)}
+          addTodo={() => {
+            this.props.addListTodo(this.state.value);
+            this.resetInput();
+          }}
         ></TodoAdd>
       </div>
     );
