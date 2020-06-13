@@ -7,6 +7,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 import { TodoView } from "./lib/todo-view/todo-view";
 import { TodoListAdd } from "./lib/todo-list-add/todo-list-add";
 
@@ -36,7 +37,7 @@ class App extends React.Component {
     };
     this.setState({ todoList: [
       ...this.state.todoList,
-      { id: `${this.state.todoList.length}`, name, todos: [] }
+      { id: uuidv4(), name, todos: [] }
     ] });
   }
 
