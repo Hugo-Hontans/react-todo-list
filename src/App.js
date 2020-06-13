@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { TodoView } from "./lib/todo-view/todo-view";
-import { TodoListAdd } from "./lib/todo-list-add/todo-list-add";
+import { TodoNav } from "./lib/todo-nav/todo-nav";
 
 class App extends React.Component {
   constructor(props) {
@@ -79,20 +79,10 @@ class App extends React.Component {
         <section className="container">
           <div className="row">
             <section className="col-4 top">
-              <nav>
-                <ul>
-                  {this.state.todoList.map((list, index) => {
-                    return (
-                      <li key={index}>
-                        <Link to={`/todo/${list.id}`}>{list.name}</Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </nav>
-              <TodoListAdd
+              <TodoNav
+                todoList={this.state.todoList}
                 addListTodo={(value) => this.addTodoList(value)}
-              ></TodoListAdd>
+              ></TodoNav>
             </section>
 
             <Switch>
