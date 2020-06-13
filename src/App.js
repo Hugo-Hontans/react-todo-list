@@ -8,6 +8,7 @@ import {
   Link
 } from "react-router-dom";
 import { TodoView } from "./lib/todo-view/todo-view";
+import { TodoAdd } from "./lib/todo-add/todo-add";
 
 class App extends React.Component {
   constructor(props) {
@@ -15,17 +16,24 @@ class App extends React.Component {
     this.state = {
       todoList: [
         {
-          id: 'firstId',
+          id: '0',
           name: 'first todo',
           todos: ["coucou", "super list"]
         },
         {
-          id: 'secondId',
+          id: '1',
           name: 'second todo',
           todos: ["New todo"]
         },
       ]
     };
+  }
+
+  addTodoList() {
+    this.setState({ todoList: [
+      ...this.state.todoList,
+      { id: `${this.state.todoList.length}`, name:"todo name", todos: [] }
+    ] });
   }
 
   changeTodo(todoToChange) {
@@ -72,9 +80,9 @@ class App extends React.Component {
               <Link to="/">Home</Link>
             </li>
             {
-              this.state.todoList.map((list) => {
+              this.state.todoList.map((list, index) => {
                 return (
-                  <li>
+                  <li key={index}>
                     <Link to={`/todo/${list.id}`}>Todo List</Link>
                   </li>
                 )
@@ -82,6 +90,7 @@ class App extends React.Component {
             }
           </ul>
         </nav>
+        <TodoAdd addTodo={() => this.addTodoList()}></TodoAdd>
 
         <Switch>
           <Route exact path="/">

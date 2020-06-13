@@ -8,6 +8,9 @@ import { useParams } from "react-router-dom";
 export function TodoView(props) {
   let { id } = useParams();
   let currentTodo = props.todos.find(todo => todo.id === id);
+  if (!currentTodo) {
+    throw new Error('This todoList doesn\'t exist');
+  }
   return (
     <section className="container text-center">
       <h1 className="title">TODO LIST</h1>
