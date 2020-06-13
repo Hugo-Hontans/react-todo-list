@@ -22,7 +22,9 @@ export function TodoView(props) {
         upTodo={(index) => props.upTodo(index, currentTodo.id)}
         downTodo={(index) => props.downTodo(index, currentTodo.id)}
       />
-      <TodoAdd addTodo={() => props.addTodo(currentTodo.id)} />
+      <article className="add">
+        <TodoAdd addTodo={() => props.addTodo(currentTodo.id)} />
+      </article>
       <article className="send">
         <TodoSend sendTodos={() => props.sendTodos()}></TodoSend>
       </article>

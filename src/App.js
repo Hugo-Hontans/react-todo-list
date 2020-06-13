@@ -8,7 +8,7 @@ import {
   Link
 } from "react-router-dom";
 import { TodoView } from "./lib/todo-view/todo-view";
-import { TodoAdd } from "./lib/todo-add/todo-add";
+import { TodoListAdd } from "./lib/todo-list-add/todo-list-add";
 
 class App extends React.Component {
   constructor(props) {
@@ -17,22 +17,26 @@ class App extends React.Component {
       todoList: [
         {
           id: '0',
-          name: 'first todo',
+          name: 'fire todo',
           todos: ["coucou", "super list"]
         },
         {
           id: '1',
-          name: 'second todo',
+          name: 'my todo',
           todos: ["New todo"]
         },
       ]
     };
   }
 
-  addTodoList() {
+  addTodoList(name) {
+    if (!name) {
+      alert('Fill todo list name.');
+      return;
+    };
     this.setState({ todoList: [
       ...this.state.todoList,
-      { id: `${this.state.todoList.length}`, name:"todo name", todos: [] }
+      { id: `${this.state.todoList.length}`, name, todos: [] }
     ] });
   }
 
@@ -83,14 +87,14 @@ class App extends React.Component {
               this.state.todoList.map((list, index) => {
                 return (
                   <li key={index}>
-                    <Link to={`/todo/${list.id}`}>Todo List</Link>
+                    <Link to={`/todo/${list.id}`}>{list.name}</Link>
                   </li>
                 )
               })
             }
           </ul>
         </nav>
-        <TodoAdd addTodo={() => this.addTodoList()}></TodoAdd>
+        <TodoListAdd addListTodo={(value) => this.addTodoList(value)}></TodoListAdd>
 
         <Switch>
           <Route exact path="/">
