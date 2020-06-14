@@ -5,6 +5,10 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { TodoView } from "./lib/todo-view/todo-view";
 import { TodoNav } from "./lib/todo-nav/todo-nav";
+import { Home } from "./lib/home/home";
+import Button from "react-bootstrap/Button";
+import { FaHome } from "react-icons/fa";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -75,7 +79,11 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <Link to="/">Home</Link>
+        <Link to="/">
+          <Button className="home">
+              <FaHome />
+          </Button>
+        </Link>
         <section className="container">
           <div className="row">
             <section className="col-4 top">
@@ -88,7 +96,7 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/">
                 <section className="col-8 text-center top">
-                  <h1>HOME</h1>
+                  <Home></Home>
                 </section>
               </Route>
               <Route path="/todo/:id">
