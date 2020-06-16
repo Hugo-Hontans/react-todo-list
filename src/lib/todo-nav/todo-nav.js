@@ -2,19 +2,20 @@ import React from "react";
 import "./todo-nav.css";
 import ListGroup from "react-bootstrap/ListGroup";
 import { TodoListAdd } from "../todo-list-add/todo-list-add";
-import { Link } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 export function TodoNav(props) {
+  const { pathname } = useLocation();
   return (
     <section>
       <ListGroup>
         {props.todoList.map((list, index) => {
           return (
-            <Link to={`/todo/${list.id}`} key={index}>
-              <ListGroup.Item action key={index}>
+            <NavLink to={`/todo/${list.id}`} key={index}>
+              <ListGroup.Item action key={index} active={pathname === `/todo/${list.id}`}>
                 {list.name}
               </ListGroup.Item>
-            </Link>
+            </NavLink>
           );
         })}
       </ListGroup>
