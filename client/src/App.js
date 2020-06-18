@@ -8,6 +8,10 @@ import { TodoNav } from "./lib/todo-nav/todo-nav";
 import { Home } from "./lib/home/home";
 import Button from "react-bootstrap/Button";
 import { FaHome } from "react-icons/fa";
+import { Login } from "./lib/login/login.js";
+import { Signup } from "./lib/signup/signup.js";
+import { PrivateRoute } from "./lib/privateRoute.js";
+import { Logout } from "./lib/logout/logout.js";
 
 
 class App extends React.Component {
@@ -84,6 +88,7 @@ class App extends React.Component {
               <FaHome />
           </Button>
         </Link>
+        <Logout></Logout>
         <section className="container">
           <div className="row">
             <section className="col-4 top">
@@ -94,12 +99,14 @@ class App extends React.Component {
             </section>
 
             <Switch>
-              <Route exact path="/">
+              <Route exact path="/" component={Login} />
+              <Route exact path="/signup" component={Signup} />
+              <PrivateRoute path="/home">
                 <section className="col-8 text-center top">
                   <Home></Home>
                 </section>
-              </Route>
-              <Route path="/todo/:id">
+              </PrivateRoute>
+              <PrivateRoute path="/todo/:id">
                 <section className="col-8 text-center top">
                   <TodoView
                     todos={this.state.todoList}
@@ -111,7 +118,7 @@ class App extends React.Component {
                     sendTodos={() => this.sendTodos()}
                   ></TodoView>
                 </section>
-              </Route>
+              </PrivateRoute>
             </Switch>
           </div>
         </section>
@@ -121,3 +128,29 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+// import React, { Component } from "react";
+// import { Route, Switch } from "react-router-dom";
+// import { Dashboard } from "./lib/dashboard/dashboard.js";
+// import { Login } from "./lib/login/login.js";
+// import { Signup } from "./lib/signup/signup.js";
+// import { PrivateRoute } from "./lib/privateRoute.js";
+// import "./App.css";
+
+// class App extends Component {
+//   render() {
+//     return (
+//       <div className="App">
+//         <div className="App-content">
+//           <Switch>
+//             <Route exact path="/" component={Login} />
+//             <Route exact path="/signup" component={Signup} />
+//             <PrivateRoute path="/dashboard" component={Dashboard} />
+//           </Switch>
+//         </div>
+//       </div>
+//     );
+//   }
+// }
+// export default App;
