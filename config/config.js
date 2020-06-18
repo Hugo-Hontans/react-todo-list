@@ -1,3 +1,3 @@
-export default {
-    "secret" : "todoListApp"
+module.exports = {
+    "secret" : "todo-list-app"
 }
