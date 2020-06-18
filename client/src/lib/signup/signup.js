@@ -16,7 +16,7 @@ export class Signup extends React.Component {
     try {
       const { data } = await API.signup({ email, password });
       localStorage.setItem("token", data.token);
-      window.location = "/dashboard";
+      window.location = "/home";
     } catch (error) {
       console.error(error);
     }
@@ -55,9 +55,11 @@ export class Signup extends React.Component {
             type="password"
           />
         </FormGroup>
-        <Button onClick={this.send} type="submit">
-          Signup
-        </Button>
+        <div className="d-flex justify-content-center">
+            <Button onClick={this.send} type="submit">
+                Signup
+            </Button>
+        </div>
       </div>
     );
   }

@@ -2,6 +2,7 @@ import React from "react";
 import './login.css';
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import API from "../../utils/API";
+import { Link } from "react-router-dom";
 
 export class Login extends React.Component {
   state = {
@@ -19,7 +20,7 @@ export class Login extends React.Component {
     try {
       const { data } = await API.login(email, password);
       localStorage.setItem("token", data.token);
-      window.location = "/dashboard";
+      window.location = "/home";
     } catch (error) {
       console.error(error);
     }
@@ -32,7 +33,7 @@ export class Login extends React.Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div className="login">
+      <div>
         <FormGroup controlId="email">
           <FormLabel>Email</FormLabel>
           <FormControl
@@ -50,9 +51,21 @@ export class Login extends React.Component {
             type="password"
           />
         </FormGroup>
-        <Button onClick={this.send} type="submit">
-          Login
-        </Button>
+        <div className="d-flex justify-content-center">
+            <Button onClick={this.send} type="submit">
+                Login
+            </Button>
+        </div>
+        <div className="d-flex justify-content-center signup">
+            Or
+        </div>
+        <div className="d-flex justify-content-center signup">
+            <Link to="/signup">
+                <Button onClick={this.send} type="submit">
+                    Signup
+                </Button>
+            </Link>
+        </div>
       </div>
     );
   }
