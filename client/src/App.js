@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { TodoView } from "./lib/todo-view/todo-view";
 import { TodoNav } from "./lib/todo-nav/todo-nav";
@@ -12,6 +12,7 @@ import { Login } from "./lib/login/login.js";
 import { Signup } from "./lib/signup/signup.js";
 import { PrivateRoute } from "./lib/privateRoute.js";
 import { Logout } from "./lib/logout/logout.js";
+import API from "./utils/API.js";
 
 
 class App extends React.Component {
@@ -83,42 +84,60 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <Link to="/">
-          <Button className="home">
-              <FaHome />
-          </Button>
-        </Link>
-        <Logout></Logout>
+        <div class="d-flex justify-content-between">
+          <Link to="/home">
+            <Button className="home">
+                <FaHome />
+            </Button>
+          </Link>
+          {
+            API.isAuth()
+            ? <Link><Logout></Logout></Link>
+            : null
+          }
+        </div>
         <section className="container">
           <div className="row">
-            <section className="col-4 top">
-              <TodoNav
-                todoList={this.state.todoList}
-                addListTodo={(value) => this.addTodoList(value)}
-              ></TodoNav>
-            </section>
+            {
+              API.isAuth()
+              ? (<section className="col-4 top">
+                <TodoNav
+                  todoList={this.state.todoList}
+                  addListTodo={(value) => this.addTodoList(value)}
+                ></TodoNav>
+              </section>)
+              : null
+            }
 
             <Switch>
               <Route exact path="/" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <PrivateRoute path="/home">
                 <section className="col-8 text-center top">
-                  <Home></Home>
+                  {
+                    API.isAuth()
+                    ? (<Home></Home>)
+                    : <Redirect to="/" />
+                  }
                 </section>
               </PrivateRoute>
-              <PrivateRoute path="/todo/:id">
+              <Route path="/todo/:id">
                 <section className="col-8 text-center top">
-                  <TodoView
-                    todos={this.state.todoList}
-                    onChange={(todos) => this.onChange(todos)}
-                    removeTodo={(index, id) => this.removeTodo(index, id)}
-                    upTodo={(index, id) => this.moveTodo(index, -1, id)}
-                    downTodo={(index, id) => this.moveTodo(index, +1, id)}
-                    addTodo={(id) => this.addTodo(id)}
-                    sendTodos={() => this.sendTodos()}
-                  ></TodoView>
+                  {
+                    API.isAuth()
+                    ? (<TodoView
+                      todos={this.state.todoList}
+                      onChange={(todos) => this.onChange(todos)}
+                      removeTodo={(index, id) => this.removeTodo(index, id)}
+                      upTodo={(index, id) => this.moveTodo(index, -1, id)}
+                      downTodo={(index, id) => this.moveTodo(index, +1, id)}
+                      addTodo={(id) => this.addTodo(id)}
+                      sendTodos={() => this.sendTodos()}
+                    ></TodoView>)
+                    : <Redirect to="/" />
+                  }
                 </section>
-              </PrivateRoute>
+              </Route>
             </Switch>
           </div>
         </section>

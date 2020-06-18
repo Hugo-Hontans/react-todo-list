@@ -1,4 +1,5 @@
 import React from "react";
+import './logout.css';
 import { Button } from "react-bootstrap";
 import API from "../../utils/API";
 
@@ -9,7 +10,7 @@ export class Logout extends React.Component {
   };
   render() {
     return (
-        <Button onClick={this.disconnect}>
+        <Button className="logout" onClick={this.disconnect}>
           Logout
         </Button>
     );
