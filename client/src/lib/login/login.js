@@ -33,11 +33,12 @@ export class Login extends React.Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div>
+      <form>
         <FormGroup controlId="email">
           <FormLabel>Email</FormLabel>
           <FormControl
             autoFocus
+            autoComplete="username"
             type="email"
             value={email}
             onChange={this.handleChange}
@@ -46,6 +47,7 @@ export class Login extends React.Component {
         <FormGroup controlId="password">
           <FormLabel>Password</FormLabel>
           <FormControl
+            autoComplete="current-password"
             value={password}
             onChange={this.handleChange}
             type="password"
@@ -66,7 +68,7 @@ export class Login extends React.Component {
                 </Button>
             </Link>
         </div>
-      </div>
+      </form>
     );
   }
 }

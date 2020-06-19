@@ -29,10 +29,11 @@ export class Signup extends React.Component {
   render() {
     const { email, password, cpassword } = this.state;
     return (
-      <div className="Login">
+      <form>
         <FormGroup controlId="email">
           <FormLabel>Email</FormLabel>
           <FormControl
+            autoComplete="username"
             autoFocus
             type="email"
             value={email}
@@ -42,6 +43,7 @@ export class Signup extends React.Component {
         <FormGroup controlId="password">
           <FormLabel>Password</FormLabel>
           <FormControl
+            autoComplete="new-password"
             value={password}
             onChange={this.handleChange}
             type="password"
@@ -50,6 +52,7 @@ export class Signup extends React.Component {
         <FormGroup controlId="cpassword">
           <FormLabel>Confirm Password</FormLabel>
           <FormControl
+            autoComplete="new-password"
             value={cpassword}
             onChange={this.handleChange}
             type="password"
@@ -60,7 +63,7 @@ export class Signup extends React.Component {
                 Signup
             </Button>
         </div>
-      </div>
+      </form>
     );
   }
 }

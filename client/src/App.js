@@ -10,7 +10,6 @@ import Button from "react-bootstrap/Button";
 import { FaHome } from "react-icons/fa";
 import { Login } from "./lib/login/login.js";
 import { Signup } from "./lib/signup/signup.js";
-import { PrivateRoute } from "./lib/privateRoute.js";
 import { Logout } from "./lib/logout/logout.js";
 import API from "./utils/API.js";
 
@@ -84,7 +83,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div class="d-flex justify-content-between">
+        <div className="d-flex justify-content-between">
           <Link to="/home">
             <Button className="home">
                 <FaHome />
@@ -92,7 +91,7 @@ class App extends React.Component {
           </Link>
           {
             API.isAuth()
-            ? <Link><Logout></Logout></Link>
+            ? <div><Logout></Logout></div>
             : null
           }
         </div>
@@ -112,7 +111,7 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/" component={Login} />
               <Route exact path="/signup" component={Signup} />
-              <PrivateRoute path="/home">
+              <Route path="/home">
                 <section className="col-8 text-center top">
                   {
                     API.isAuth()
@@ -120,7 +119,7 @@ class App extends React.Component {
                     : <Redirect to="/" />
                   }
                 </section>
-              </PrivateRoute>
+              </Route>
               <Route path="/todo/:id">
                 <section className="col-8 text-center top">
                   {
