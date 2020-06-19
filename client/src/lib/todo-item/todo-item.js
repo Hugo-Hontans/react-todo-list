@@ -2,6 +2,7 @@ import React from "react";
 import "./todo-item.css";
 import { TodoRemove } from "../todo-remove/todo-remove.js";
 import { TodoMove } from "../todo-move/todo-move.js";
+import { FormGroup, FormControl } from "react-bootstrap";
 
 export class TodoItem extends React.Component {
   constructor(props) {
@@ -17,17 +18,19 @@ export class TodoItem extends React.Component {
   render() {
     return (
       <div className="container item">
-        <div className="row justify-content-center">
+        <div className="row justify-content-center align-items-center">
           <TodoMove
             position={this.props.position}
             upTodo={() => this.props.upTodo()}
             downTodo={() => this.props.downTodo()}
           ></TodoMove>
-          <input
-            type="text"
-            value={this.props.todo}
-            onChange={this.handleChange}
-          ></input>
+          <FormGroup className="todo-group" controlId="todoValue">
+            <FormControl
+              type="text"
+              value={this.props.todo}
+              onChange={this.handleChange}
+            />
+          </FormGroup>
           <TodoRemove removeTodo={() => this.props.removeTodo()} />
         </div>
       </div>
