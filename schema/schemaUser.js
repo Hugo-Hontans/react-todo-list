@@ -20,6 +20,20 @@ const userSchema = mongoose.Schema(
   { timestamps: { createdAt: "created_at" } }
 );
 
+const todoListSchema = mongoose.Schema(
+  {
+    id: {
+      type: String
+    },
+    name: {
+      type: String
+    },
+    todos: {
+      type: Array
+    }
+  }
+);
+
 userSchema.methods = {
   authenticate: function(password) {
     return passwordHash.verify(password, this.password);
@@ -30,3 +44,4 @@ userSchema.methods = {
 };
 
 module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("TodoList", todoListSchema);

@@ -17,6 +17,7 @@ export default {
       }
     );
   },
+  
   signup: function(send) {
     return axios.post(`${burl}/user/signup`, send, { headers: headers });
   },
@@ -24,7 +25,20 @@ export default {
   isAuth: function() {
     return localStorage.getItem("token") !== null;
   },
+
   logout: function() {
     localStorage.clear();
+  },
+
+  sendTodoList(todoList) {
+    return axios.post(`${burl}/user/todolist`, todoList, { headers: headers });
+  },
+
+  getTodoList() {
+    return axios.get(`${burl}/user/getTodolist`);
+  },
+
+  deleteTodoList() {
+    return axios.delete(`${burl}/user/deleteTodolist`);
   }
 };

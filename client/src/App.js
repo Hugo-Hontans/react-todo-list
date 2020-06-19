@@ -19,18 +19,26 @@ class App extends React.Component {
     super(props);
     this.state = {
       todoList: [
-        {
-          id: "0",
-          name: "fire todo",
-          todos: ["coucou", "super list"],
-        },
-        {
-          id: "1",
-          name: "my todo",
-          todos: ["New todo"],
-        },
+        // {
+        //   id: "0",
+        //   name: "fire todo",
+        //   todos: ["coucou", "super list"],
+        // },
+        // {
+        //   id: "1",
+        //   name: "my todo",
+        //   todos: ["New todo"],
+        // },
       ],
     };
+    //const todos = await this.getTodos();
+    //API.deleteTodoList();
+  }
+
+  async componentDidMount() { 
+    const { todoList } = await this.getTodos();
+    console.log(todoList)
+    this.setState({todoList});
   }
 
   addTodoList(name) {
@@ -71,10 +79,38 @@ class App extends React.Component {
     this.changeTodo(todo);
   }
 
-  sendTodos() {
-    const todoList = this.state.todoList;
-    console.log(todoList);
+  async sendTodos() {
+    // const todoList = this.state.todoList;
+    // console.log(todoList);
+    try {
+      const { data } = await API.sendTodoList(this.state.todoList);
+      console.log(data)
+    } catch (error) {
+      console.error(error);
+    }
   }
+
+  async getTodos() {
+    try {
+      const { data } = await API.getTodoList();
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  send = async () => {
+    const { email, password, cpassword } = this.state;
+    if (!email || email.length === 0) return;
+    if (!password || password.length === 0 || password !== cpassword) return;
+    try {
+      const { data } = await API.signup({ email, password });
+      localStorage.setItem("token", data.token);
+      window.location = "/home";
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   onChange(todos) {
     this.setState({ todos });
