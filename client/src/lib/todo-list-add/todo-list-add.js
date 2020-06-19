@@ -1,6 +1,7 @@
 import React from "react";
 import "./todo-list-add.css";
 import { TodoAdd } from "../todo-add/todo-add.js";
+import { FormGroup, FormControl } from "react-bootstrap";
 
 export class TodoListAdd extends React.Component {
   constructor(props) {
@@ -19,18 +20,24 @@ export class TodoListAdd extends React.Component {
 
   render() {
     return (
-      <div>
-        <input
-          type="text"
-          value={this.state.value}
-          onChange={this.handleChange}
-        ></input>
-        <TodoAdd
-          addTodo={() => {
-            this.props.addListTodo(this.state.value);
-            this.resetInput();
-          }}
-        ></TodoAdd>
+      <div className="container">
+        <form className="row d-flex justify-content-center">
+          <FormGroup controlId="todoName">
+            <FormControl
+              type="text"
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+          </FormGroup>
+          <div>
+          <TodoAdd
+            addTodo={() => {
+              this.props.addListTodo(this.state.value);
+              this.resetInput();
+            }}
+          ></TodoAdd>
+          </div>
+        </form>
       </div>
     );
   }
