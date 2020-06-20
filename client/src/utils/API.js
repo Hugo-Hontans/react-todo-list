@@ -36,9 +36,5 @@ export default {
 
   getTodoList() {
     return axios.get(`${burl}/todoList/getTodolist`);
-  },
-
-  deleteTodoList() {
-    return axios.delete(`${burl}/todoList/deleteTodolist`);
   }
 };

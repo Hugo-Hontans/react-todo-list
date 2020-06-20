@@ -62,17 +62,5 @@ async function getTodoList(req, res) {
   }
 }
 
-async function deleteTodoList(req, res) {
-  try {
-    await TodoList.deleteMany({ _id: "5eee28ac0bedb72ba4e5ed1f" });
-    return res.status(200).json({
-      text: "Success",
-    });
-  } catch (error) {
-    return res.status(500).json({ error });
-  }
-}
-
 exports.sendTodoList = sendTodoList;
 exports.getTodoList = getTodoList;
-exports.deleteTodoList = deleteTodoList;
