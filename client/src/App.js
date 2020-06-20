@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-ro
 import { v4 as uuidv4 } from "uuid";
 import { TodoView } from "./lib/todo-view/todo-view";
 import { TodoNav } from "./lib/todo-nav/todo-nav";
+import { TodoSend } from "./lib/todo-send/todo-send";
 import { Home } from "./lib/home/home";
 import Button from "react-bootstrap/Button";
 import { FaHome } from "react-icons/fa";
@@ -115,9 +116,13 @@ class App extends React.Component {
                 <FaHome />
             </Button>
           </Link>
+          
           {
             API.isAuth()
-            ? <div><Logout></Logout></div>
+            ? (<div>
+                <TodoSend sendTodos={() => this.sendTodos()}></TodoSend>
+                <Logout></Logout>
+              </div>)
             : null
           }
         </div>

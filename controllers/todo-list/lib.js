@@ -32,8 +32,13 @@ async function sendTodoList(req, res) {
         }
       // Create new todo
       } else {
+          const findTodo = await TodoList.findOne({
+            id: todo.id
+          });
+          if (!findTodo) {
             const todoData = new TodoList(todo);
             promises.push(todoData.save());
+          }
       };
     });
     await Promise.all(promises);
