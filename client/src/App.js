@@ -18,26 +18,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todoList: [
-        // {
-        //   id: "0",
-        //   name: "fire todo",
-        //   todos: ["coucou", "super list"],
-        // },
-        // {
-        //   id: "1",
-        //   name: "my todo",
-        //   todos: ["New todo"],
-        // },
-      ],
+      todoList: []
     };
-    //const todos = await this.getTodos();
-    API.deleteTodoList();
   }
 
   async componentDidMount() { 
     const { todoList } = await this.getTodos();
-    console.log(todoList)
     this.setState({todoList});
   }
 
@@ -79,12 +65,16 @@ class App extends React.Component {
     this.changeTodo(todo);
   }
 
+  removeTodoList(id) {
+    const index = this.state.todoList.findIndex((todo) => todo.id === id);
+    const todoList = this.state.todoList;
+    todoList.splice(index, 1);
+    this.setState({ todoList });
+  }
+
   async sendTodos() {
-    // const todoList = this.state.todoList;
-    // console.log(todoList);
     try {
-      const { data } = await API.sendTodoList(this.state.todoList);
-      console.log(data)
+      await API.sendTodoList(this.state.todoList);
     } catch (error) {
       console.error(error);
     }
@@ -161,6 +151,7 @@ class App extends React.Component {
                   {
                     API.isAuth()
                     ? (<TodoView
+                      removeTodoList={(id) => this.removeTodoList(id)}
                       todos={this.state.todoList}
                       onChange={(todos) => this.onChange(todos)}
                       removeTodo={(index, id) => this.removeTodo(index, id)}
@@ -182,29 +173,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-
-// import React, { Component } from "react";
-// import { Route, Switch } from "react-router-dom";
-// import { Dashboard } from "./lib/dashboard/dashboard.js";
-// import { Login } from "./lib/login/login.js";
-// import { Signup } from "./lib/signup/signup.js";
-// import { PrivateRoute } from "./lib/privateRoute.js";
-// import "./App.css";
-
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <div className="App-content">
-//           <Switch>
-//             <Route exact path="/" component={Login} />
-//             <Route exact path="/signup" component={Signup} />
-//             <PrivateRoute path="/dashboard" component={Dashboard} />
-//           </Switch>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-// export default App;

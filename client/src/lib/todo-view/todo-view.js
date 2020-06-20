@@ -2,6 +2,7 @@ import React from "react";
 import "./todo-view.css";
 import { TodoList } from "../todo-list/todo-list.js";
 import { TodoAdd } from "../todo-add/todo-add";
+import { TodoRemove } from "../todo-remove/todo-remove";
 import { TodoSend } from "../todo-send/todo-send";
 import { useParams } from "react-router-dom";
 import { Redirect } from 'react-router-dom';
@@ -15,7 +16,10 @@ export function TodoView(props) {
   }
   return (
     <div>
-      <h1 className="title">{currentTodo.name}</h1>
+      <div className="title row justify-content-center align-items-center">
+        <h1>{currentTodo.name}</h1>
+        <TodoRemove removeTodo={() => props.removeTodoList(currentTodo.id)}></TodoRemove>
+      </div>
       <TodoList
         className="row"
         todos={currentTodo.todos}

@@ -11,6 +11,15 @@ async function sendTodoList(req, res) {
   try {
     // Save todoList in DB
     const promises = [];
+
+    const todoListData = await TodoList.find();
+    
+    // Remove todoList in DB which was deleted by the user
+    const todoListToRemove = todoListData.filter(todoDB => !todoList.some(todo => todo.id === todoDB.id));
+    todoListToRemove.forEach(async todo => {
+      promises.push(TodoList.deleteOne({ _id: todo._id }));
+    });
+
     todoList.forEach(async (todo) => {
       if (todo._id) {
         const findTodo = await TodoList.findOne({
