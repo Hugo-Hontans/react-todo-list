@@ -32,7 +32,7 @@ class App extends React.Component {
       ],
     };
     //const todos = await this.getTodos();
-    //API.deleteTodoList();
+    API.deleteTodoList();
   }
 
   async componentDidMount() { 
