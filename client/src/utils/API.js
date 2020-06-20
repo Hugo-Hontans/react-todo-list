@@ -31,14 +31,14 @@ export default {
   },
 
   sendTodoList(todoList) {
-    return axios.post(`${burl}/user/todolist`, todoList, { headers: headers });
+    return axios.post(`${burl}/todoList/sendTodolist`, todoList, { headers: headers });
   },
 
   getTodoList() {
-    return axios.get(`${burl}/user/getTodolist`);
+    return axios.get(`${burl}/todoList/getTodolist`);
   },
 
   deleteTodoList() {
-    return axios.delete(`${burl}/user/deleteTodolist`);
+    return axios.delete(`${burl}/todoList/deleteTodolist`);
   }
 };

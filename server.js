@@ -1,9 +1,8 @@
-//Définition des modules
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
-//Connexion à la base de donnée
+// Connexion to DB
 mongoose
   .connect("mongodb://localhost/db")
   .then(() => {
@@ -14,10 +13,9 @@ mongoose
     console.log(e);
   });
 
-//On définit notre objet express nommé app
 const app = express();
 
-//Body Parser
+// Body Parser
 const urlencodedParser = bodyParser.urlencoded({
   extended: true
 });
@@ -25,7 +23,7 @@ app.use(urlencodedParser);
 
 app.use(bodyParser.json());
 
-//Définition des CORS
+// Definition of CORS
 app.use(function(req, res, next) {
   res.setHeader(
     "Access-Control-Allow-Headers",
@@ -40,11 +38,13 @@ app.use(function(req, res, next) {
   next();
 });
 
-//Définition du routeur
+//Definition of router
 const router = express.Router();
 app.use("/user", router);
 require(__dirname + "/controllers/userController")(router);
+app.use("/todoList", router);
+require(__dirname + "/controllers/todoListController")(router);
 
-//Définition et mise en place du port d'écoute
+// Definition of listening port
 const port = 8800;
 app.listen(port, () => console.log(`Listening on port ${port}`));
