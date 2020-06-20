@@ -4,16 +4,18 @@ import { TodoList } from "../todo-list/todo-list.js";
 import { TodoAdd } from "../todo-add/todo-add";
 import { TodoSend } from "../todo-send/todo-send";
 import { useParams } from "react-router-dom";
+import { Redirect } from 'react-router-dom';
 
 export function TodoView(props) {
   let { id } = useParams();
   let currentTodo = props.todos.find(todo => todo.id === id);
+
   if (!currentTodo) {
-    throw new Error('This todoList doesn\'t exist');
+    return (<Redirect to='/home' />);
   }
   return (
     <div>
-      <h1 className="title">TODO LIST</h1>
+      <h1 className="title">{currentTodo.name}</h1>
       <TodoList
         className="row"
         todos={currentTodo.todos}
