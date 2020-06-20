@@ -1,8 +1,10 @@
 const TodoList = require("../../schema/schemaTodoList.js");
+const User = require("../../schema/schemaUser.js");
 
 async function sendTodoList(req, res) {
-  const todoList = req.body;
-  if (!todoList) {
+  const todoList = req.body.todoList;
+  const email = req.body.email;
+  if (!todoList || !email) {
     // If todoList is null or undefined
     return res.status(400).json({
       text: "Invalid request",
@@ -37,6 +39,7 @@ async function sendTodoList(req, res) {
           });
           if (!findTodo) {
             const todoData = new TodoList(todo);
+            todoData.email = email;
             promises.push(todoData.save());
           }
       };

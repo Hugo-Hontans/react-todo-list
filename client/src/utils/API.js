@@ -31,7 +31,7 @@ export default {
   },
 
   sendTodoList(todoList) {
-    return axios.post(`${burl}/todoList/sendTodolist`, todoList, { headers: headers });
+    return axios.post(`${burl}/todoList/sendTodolist`, { todoList, email: localStorage.getItem("email") }, { headers: headers });
   },
 
   getTodoList() {

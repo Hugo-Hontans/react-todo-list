@@ -16,6 +16,7 @@ export class Signup extends React.Component {
     try {
       const { data } = await API.signup({ email, password });
       localStorage.setItem("token", data.token);
+      localStorage.setItem("email", data.email);
       window.location = "/home";
     } catch (error) {
       console.error(error);

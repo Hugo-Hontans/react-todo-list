@@ -33,6 +33,7 @@ async function signup(req, res) {
     const userObject = await userData.save();
     return res.status(200).json({
       text: "Success",
+      email: userData.email,
       token: userObject.getToken()
     });
   } catch (error) {
@@ -61,6 +62,7 @@ async function login(req, res) {
       });
     return res.status(200).json({
       token: findUser.getToken(),
+      email: findUser.email,
       text: "Authentication successed"
     });
   } catch (error) {
