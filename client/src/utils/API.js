@@ -2,6 +2,10 @@ import axios from "axios";
 const headers = {
   "Content-Type": "application/json"
 };
+const headersWithEmail = {
+  "Content-Type": "application/json",
+  "Email": localStorage.getItem("email")
+};
 const burl = "http://localhost:8800";
 
 export default {
@@ -31,10 +35,10 @@ export default {
   },
 
   sendTodoList(todoList) {
-    return axios.post(`${burl}/todoList/sendTodolist`, { todoList, email: localStorage.getItem("email") }, { headers: headers });
+    return axios.post(`${burl}/todoList/sendTodolist`, todoList, { headers: headersWithEmail });
   },
 
   getTodoList() {
-    return axios.get(`${burl}/todoList/getTodolist`);
+    return axios.get(`${burl}/todoList/getTodolist`, { headers: headersWithEmail });
   }
 };

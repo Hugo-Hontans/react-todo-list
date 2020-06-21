@@ -1,9 +1,8 @@
 const TodoList = require("../../schema/schemaTodoList.js");
-const User = require("../../schema/schemaUser.js");
 
 async function sendTodoList(req, res) {
-  const todoList = req.body.todoList;
-  const email = req.body.email;
+  const todoList = req.body;
+  const email = req.headers.email;
   if (!todoList || !email) {
     // If todoList is null or undefined
     return res.status(400).json({
@@ -14,7 +13,7 @@ async function sendTodoList(req, res) {
     // Save todoList in DB
     const promises = [];
 
-    const todoListData = await TodoList.find();
+    const todoListData = await TodoList.find({ email });
     
     // Remove todoList in DB which was deleted by the user
     const todoListToRemove = todoListData.filter(todoDB => !todoList.some(todo => todo.id === todoDB.id));
@@ -54,8 +53,9 @@ async function sendTodoList(req, res) {
 }
 
 async function getTodoList(req, res) {
+  const email = req.headers.email;
   try {
-    const todoListData = await TodoList.find();
+    const todoListData = await TodoList.find({ email });
     return res.status(200).json({
       text: "Success",
       todoList: todoListData,

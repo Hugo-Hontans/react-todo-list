@@ -7,6 +7,9 @@ const todoListSchema = mongoose.Schema({
   name: {
     type: String,
   },
+  email: {
+    type: String,
+  },
   todos: {
     type: Array,
   },
