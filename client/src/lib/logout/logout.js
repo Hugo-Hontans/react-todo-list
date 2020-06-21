@@ -11,7 +11,7 @@ export class Logout extends React.Component {
   render() {
     return (
         <Button className="logout" onClick={this.disconnect}>
-          Logout
+          Log out
         </Button>
     );
   }

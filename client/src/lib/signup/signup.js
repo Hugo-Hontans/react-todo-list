@@ -35,7 +35,8 @@ export class Signup extends React.Component {
     const { email, password, cpassword } = this.state;
     return (
       <form>
-        <FormGroup controlId="email">
+        <p className="col-8 col-md-12 center text-center">To enjoy this wonderful todo list application, sign up.</p>
+        <FormGroup className="col-8 col-md-12 center" controlId="email">
           <FormLabel>Email</FormLabel>
           <FormControl
             autoComplete="username"
@@ -45,7 +46,7 @@ export class Signup extends React.Component {
             onChange={this.handleChange}
           />
         </FormGroup>
-        <FormGroup controlId="password">
+        <FormGroup className="col-8 col-md-12 center" controlId="password">
           <FormLabel>Password</FormLabel>
           <FormControl
             autoComplete="new-password"
@@ -54,7 +55,7 @@ export class Signup extends React.Component {
             type="password"
           />
         </FormGroup>
-        <FormGroup controlId="cpassword">
+        <FormGroup className="col-8 col-md-12 center" controlId="cpassword">
           <FormLabel>Confirm Password</FormLabel>
           <FormControl
             autoComplete="new-password"
@@ -65,7 +66,7 @@ export class Signup extends React.Component {
         </FormGroup>
         <div className="d-flex justify-content-center">
             <Button onClick={this.send} type="submit">
-                Signup
+                Sign up
             </Button>
         </div>
       </form>
