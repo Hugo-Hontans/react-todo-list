@@ -13,13 +13,15 @@ import { Login } from "./lib/login/login.js";
 import { Signup } from "./lib/signup/signup.js";
 import { Logout } from "./lib/logout/logout.js";
 import API from "./utils/API.js";
+import { wait } from "./utils/helpers.js";
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todoList: []
+      todoList: [],
+      saveSucceeded: false
     };
   }
 
@@ -75,7 +77,11 @@ class App extends React.Component {
 
   async sendTodos() {
     try {
+      const fakeWait = wait(2000);
       await API.sendTodoList(this.state.todoList);
+      this.setState({ saveSucceeded: true });
+      await fakeWait;
+      this.setState({ saveSucceeded: false });
     } catch (error) {
       console.error(error);
     }
@@ -120,7 +126,7 @@ class App extends React.Component {
           {
             API.isAuth()
             ? (<div>
-                <TodoSend sendTodos={() => this.sendTodos()}></TodoSend>
+                <TodoSend sendTodos={() => this.sendTodos()} disabled={this.state.saveSucceeded}></TodoSend>
                 <Logout></Logout>
               </div>)
             : null
