@@ -1,10 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
+mongoose.set('useCreateIndex', true);
 const bodyParser = require("body-parser");
 
 // Connexion to DB
 mongoose
-  .connect("mongodb://localhost/db")
+  .connect("mongodb://localhost/db", { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("Connected to mongoDB");
   })
