@@ -2,6 +2,7 @@ import React from "react";
 import './signup.css';
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import API from "../../utils/API";
+import { Redirect } from "react-router-dom";
 
 export class Signup extends React.Component {
   state = {
@@ -28,6 +29,9 @@ export class Signup extends React.Component {
     });
   };
   render() {
+    if (API.isAuth()) {
+      return (<Redirect to='/home' />);
+    }
     const { email, password, cpassword } = this.state;
     return (
       <form>

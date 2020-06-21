@@ -3,8 +3,7 @@ import "./todo-view.css";
 import { TodoList } from "../todo-list/todo-list.js";
 import { TodoAdd } from "../todo-add/todo-add";
 import { TodoRemove } from "../todo-remove/todo-remove";
-import { useParams } from "react-router-dom";
-import { Redirect } from 'react-router-dom';
+import { useParams, Redirect } from "react-router-dom";
 
 export function TodoView(props) {
   let { id } = useParams();
