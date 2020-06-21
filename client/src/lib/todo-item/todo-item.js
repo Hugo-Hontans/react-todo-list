@@ -24,7 +24,7 @@ export class TodoItem extends React.Component {
             upTodo={() => this.props.upTodo()}
             downTodo={() => this.props.downTodo()}
           ></TodoMove>
-          <FormGroup className="col-6 col-sm-5 todo-group" controlId="todoValue">
+          <FormGroup className="col-6 col-lg-5 todo-group" controlId="todoValue">
             <FormControl
               type="text"
               value={this.props.todo}
