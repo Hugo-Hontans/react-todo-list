@@ -1,3 +1,3 @@
 module.exports = {
-    "secret" : "todo-list-app"
+    "secret" : process.env.SECRET_TODO_LIST || "todo-list-app"
 }

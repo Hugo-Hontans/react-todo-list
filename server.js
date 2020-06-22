@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 
 // Connexion to DB
 mongoose
-  .connect("mongodb://localhost/db", { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect("mongodb://localhost/todo-list-app", { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("Connected to mongoDB");
   })

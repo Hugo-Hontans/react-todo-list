@@ -6,7 +6,7 @@ const headersWithEmail = {
   "Content-Type": "application/json",
   "Email": localStorage.getItem("email")
 };
-const burl = "http://localhost:8800";
+const burl = process.env.REACT_APP_URL || "http://localhost:8800";
 
 export default {
   login: function(email, password) {
