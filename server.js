@@ -41,7 +41,7 @@ app.use(function(req, res, next) {
 
 //Definition of router
 const router = express.Router();
-app.use("/user", router);
+app.use("/todoList/user", router);
 require(__dirname + "/controllers/userController")(router);
 app.use("/todoList", router);
 require(__dirname + "/controllers/todoListController")(router);
