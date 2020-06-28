@@ -37,14 +37,14 @@ export class Login extends React.Component {
     }
     const { email, password } = this.state;
     return (
-      <form>
+      <form onSubmit={this.send}>
         <p className="col-8 col-md-12 center text-center">To enjoy this wonderful todo list application, log in.</p>
         <FormGroup  className="col-8 col-md-12 center" controlId="email">
           <FormLabel>Email</FormLabel>
           <FormControl
             autoFocus
             autoComplete="username"
-            type="email"
+            type="text"
             value={email}
             onChange={this.handleChange}
           />
@@ -68,7 +68,7 @@ export class Login extends React.Component {
         </div>
         <div className="d-flex justify-content-center signup">
             <Link to="/signup">
-                <Button onClick={this.send} type="submit">
+                <Button type="submit">
                     Sign up
                 </Button>
             </Link>

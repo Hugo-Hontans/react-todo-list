@@ -12,9 +12,11 @@ export class Signup extends React.Component {
   };
   send = async () => {
     const { email, password, cpassword } = this.state;
+    console.log(email)
     if (!email || email.length === 0) return;
     if (!password || password.length === 0 || password !== cpassword) return;
     try {
+      console.log(email)
       const { data } = await API.signup({ email, password });
       localStorage.setItem("token", data.token);
       localStorage.setItem("email", data.email);
@@ -34,14 +36,14 @@ export class Signup extends React.Component {
     }
     const { email, password, cpassword } = this.state;
     return (
-      <form>
+      <form onSubmit={this.send}>
         <p className="col-8 col-md-12 center text-center">To enjoy this wonderful todo list application, sign up.</p>
         <FormGroup className="col-8 col-md-12 center" controlId="email">
           <FormLabel>Email</FormLabel>
           <FormControl
             autoComplete="username"
             autoFocus
-            type="email"
+            type="text"
             value={email}
             onChange={this.handleChange}
           />
@@ -65,7 +67,7 @@ export class Signup extends React.Component {
           />
         </FormGroup>
         <div className="d-flex justify-content-center">
-            <Button onClick={this.send} type="submit">
+            <Button type="submit">
                 Sign up
             </Button>
         </div>
