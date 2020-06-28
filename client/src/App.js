@@ -32,7 +32,6 @@ class App extends React.Component {
 
   addTodoList(name) {
     if (!name) {
-      alert("Fill todo list name.");
       return;
     }
     this.setState({

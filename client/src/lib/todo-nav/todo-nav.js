@@ -22,6 +22,7 @@ export function TodoNav(props) {
       <div className="list-add text-center">
         <TodoListAdd
           addListTodo={(value) => props.addListTodo(value)}
+          listLength={props.todoList.length}
         ></TodoListAdd>
       </div>
     </section>

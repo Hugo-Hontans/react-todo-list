@@ -1,16 +1,17 @@
 import React from "react";
 import "./todo-list-add.css";
 import { TodoAdd } from "../todo-add/todo-add.js";
-import { FormGroup, FormControl } from "react-bootstrap";
+import { FormGroup, FormControl, Alert } from "react-bootstrap";
 
 export class TodoListAdd extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: "" };
+    this.state = { value: "", hasError: false };
     this.handleChange = this.handleChange.bind(this);
   }
 
   resetInput() {
+    this.setState({hasError: this.state.value ? false : true});
     this.setState({ value: "" });
   }
 
@@ -29,6 +30,13 @@ export class TodoListAdd extends React.Component {
           }}
           className="row d-flex justify-content-center"
         >
+          {
+            this.props.listLength
+            ? null
+            : (<Alert variant="secondary">
+              Fill name of your new todo list here.
+            </Alert>)
+          }
           <FormGroup controlId="todoName">
             <FormControl
               type="text"
@@ -37,8 +45,15 @@ export class TodoListAdd extends React.Component {
             />
           </FormGroup>
           <div>
-          <TodoAdd></TodoAdd>
+            <TodoAdd />
           </div>
+          {
+            this.state.hasError
+            ? (<Alert variant="danger">
+                You must fill todo list name.
+              </Alert>)
+            : null
+          }
         </form>
       </div>
     );
