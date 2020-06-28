@@ -18,7 +18,7 @@ export class Signup extends React.Component {
       const { data } = await API.signup({ email, password });
       localStorage.setItem("token", data.token);
       localStorage.setItem("email", data.email);
-      window.location = "/home";
+      window.location = "/";
     } catch (error) {
       console.error(error);
     }
@@ -34,7 +34,7 @@ export class Signup extends React.Component {
     }
     const { email, password, cpassword } = this.state;
     return (
-      <form onSubmit={this.send}>
+      <form>
         <p className="col-8 col-md-12 center text-center">To enjoy this wonderful todo list application, sign up.</p>
         <FormGroup className="col-8 col-md-12 center" controlId="email">
           <FormLabel>Email</FormLabel>
@@ -65,7 +65,7 @@ export class Signup extends React.Component {
           />
         </FormGroup>
         <div className="d-flex justify-content-center">
-            <Button type="submit">
+            <Button onClick={this.send}>
                 Sign up
             </Button>
         </div>

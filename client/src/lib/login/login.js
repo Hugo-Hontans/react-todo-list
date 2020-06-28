@@ -21,7 +21,7 @@ export class Login extends React.Component {
       const { data } = await API.login(email, password);
       localStorage.setItem("token", data.token);
       localStorage.setItem("email", data.email);
-      window.location = "/home";
+      window.location = "/";
     } catch (error) {
       console.error(error);
     }
@@ -37,7 +37,7 @@ export class Login extends React.Component {
     }
     const { email, password } = this.state;
     return (
-      <form onSubmit={this.send}>
+      <form>
         <p className="col-8 col-md-12 center text-center">To enjoy this wonderful todo list application, log in.</p>
         <FormGroup  className="col-8 col-md-12 center" controlId="email">
           <FormLabel>Email</FormLabel>
@@ -59,7 +59,7 @@ export class Login extends React.Component {
           />
         </FormGroup>
         <div className="d-flex justify-content-center">
-            <Button onClick={this.send} type="submit">
+            <Button onClick={this.send}>
                 Log in
             </Button>
         </div>
@@ -68,7 +68,7 @@ export class Login extends React.Component {
         </div>
         <div className="d-flex justify-content-center signup">
             <Link to="/signup">
-                <Button type="submit">
+                <Button>
                     Sign up
                 </Button>
             </Link>
