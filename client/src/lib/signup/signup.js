@@ -12,11 +12,9 @@ export class Signup extends React.Component {
   };
   send = async () => {
     const { email, password, cpassword } = this.state;
-    console.log(email)
     if (!email || email.length === 0) return;
     if (!password || password.length === 0 || password !== cpassword) return;
     try {
-      console.log(email)
       const { data } = await API.signup({ email, password });
       localStorage.setItem("token", data.token);
       localStorage.setItem("email", data.email);
