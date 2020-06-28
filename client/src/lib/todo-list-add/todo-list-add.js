@@ -21,7 +21,14 @@ export class TodoListAdd extends React.Component {
   render() {
     return (
       <div className="container">
-        <form className="row d-flex justify-content-center">
+        <form
+          onSubmit={(event) => {
+            this.props.addListTodo(this.state.value);
+            this.resetInput();
+            event.preventDefault();
+          }}
+          className="row d-flex justify-content-center"
+        >
           <FormGroup controlId="todoName">
             <FormControl
               type="text"
@@ -30,12 +37,7 @@ export class TodoListAdd extends React.Component {
             />
           </FormGroup>
           <div>
-          <TodoAdd
-            addTodo={() => {
-              this.props.addListTodo(this.state.value);
-              this.resetInput();
-            }}
-          ></TodoAdd>
+          <TodoAdd></TodoAdd>
           </div>
         </form>
       </div>

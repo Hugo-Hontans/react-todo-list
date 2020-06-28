@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 
 export function TodoAdd(props) {
     return (
-        <Button variant="primary" onClick={props.addTodo}>
+        <Button variant="primary" onClick={props.addTodo} type="submit">
             Add
         </Button>
     ); 

@@ -37,7 +37,7 @@ export class Login extends React.Component {
     }
     const { email, password } = this.state;
     return (
-      <form>
+      <form onSubmit={(event) => {this.send(); event.preventDefault();}}>
         <p className="col-8 col-md-12 center text-center">To enjoy this wonderful todo list application, log in.</p>
         <FormGroup  className="col-8 col-md-12 center" controlId="email">
           <FormLabel>Email</FormLabel>
@@ -59,7 +59,7 @@ export class Login extends React.Component {
           />
         </FormGroup>
         <div className="d-flex justify-content-center">
-            <Button onClick={this.send}>
+            <Button type="submit">
                 Log in
             </Button>
         </div>
