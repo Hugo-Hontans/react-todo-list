@@ -5,8 +5,7 @@ import { TodoAdd } from "../todo-add/todo-add";
 import { TodoRemove } from "../todo-remove/todo-remove";
 import { useParams, Redirect } from "react-router-dom";
 import { FormGroup, FormControl } from "react-bootstrap";
-import Button from 'react-bootstrap/Button';
-import { FaEdit } from "react-icons/fa";
+import { TodoNameEdit } from '../todo-name-edit/todo-name-edit.';
 
 export function TodoView(props) {
   let { id } = useParams();
@@ -37,9 +36,7 @@ export function TodoView(props) {
               />
             </FormGroup>)
         }
-        <Button size="sm" variant="secondary" onClick={changeName}>
-            <FaEdit />
-        </Button>
+        <TodoNameEdit changeName={changeName}></TodoNameEdit>
         <TodoRemove removeTodo={() => props.removeTodoList(currentTodo.id)}></TodoRemove>
       </div>
       <TodoList
