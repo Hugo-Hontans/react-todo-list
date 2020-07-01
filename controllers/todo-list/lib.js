@@ -29,6 +29,7 @@ async function sendTodoList(req, res) {
         // Update todo
         if (findTodo) {
             findTodo.todos = todo.todos;
+            findTodo.name = todo.name;
             promises.push(findTodo.save());
         }
       // Create new todo

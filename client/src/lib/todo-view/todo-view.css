@@ -5,3 +5,8 @@
 .add {
   margin-top: 10px;
 }
+
+.todo-name {
+  margin-bottom: 0;
+  margin-right: 15px;
+}

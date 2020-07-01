@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useState } from 'react';
 import "./todo-view.css";
 import { TodoList } from "../todo-list/todo-list.js";
 import { TodoAdd } from "../todo-add/todo-add";
 import { TodoRemove } from "../todo-remove/todo-remove";
 import { useParams, Redirect } from "react-router-dom";
+import { FormGroup, FormControl } from "react-bootstrap";
+import Button from 'react-bootstrap/Button';
+import { FaEdit } from "react-icons/fa";
 
 export function TodoView(props) {
   let { id } = useParams();
   let currentTodo = props.todos.find(todo => todo.id === id);
+  let [isTitle, setIsTitle] = useState(true);
+
+
+  const changeName = () => setIsTitle(!isTitle);
+
+  const handleChange = (event) => {
+    props.todoNameOnChange(event.target.value, currentTodo.id);
+  }
 
   if (!currentTodo) {
     return (<Redirect to='/home' />);
@@ -15,7 +26,20 @@ export function TodoView(props) {
   return (
     <div>
       <div className="title row justify-content-center align-items-center">
-        <h1>{currentTodo.name}</h1>
+        {
+          isTitle
+          ? <h1 className="todo-name">{currentTodo.name}</h1>
+          : (<FormGroup className="col-6 col-lg-5 todo-group">
+              <FormControl
+                type="text"
+                value={currentTodo.name}
+                onChange={handleChange}
+              />
+            </FormGroup>)
+        }
+        <Button size="sm" variant="secondary" onClick={changeName}>
+            <FaEdit />
+        </Button>
         <TodoRemove removeTodo={() => props.removeTodoList(currentTodo.id)}></TodoRemove>
       </div>
       <TodoList

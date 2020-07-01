@@ -112,6 +112,15 @@ class App extends React.Component {
     this.setState({ todos });
   }
 
+  todoNameOnChange(value, todoToChangeId) {
+    const index = this.state.todoList.findIndex(
+      (todo) => todo.id === todoToChangeId
+    );
+    const todoList = this.state.todoList;
+    todoList[index].name = value;
+    this.setState({ todoList });
+  }
+
   render() {
     return (
       <Router>
@@ -164,6 +173,7 @@ class App extends React.Component {
                       removeTodoList={(id) => this.removeTodoList(id)}
                       todos={this.state.todoList}
                       onChange={(todos) => this.onChange(todos)}
+                      todoNameOnChange={(name, todoId) => this.todoNameOnChange(name, todoId)}
                       removeTodo={(index, id) => this.removeTodo(index, id)}
                       upTodo={(index, id) => this.moveTodo(index, -1, id)}
                       downTodo={(index, id) => this.moveTodo(index, +1, id)}
