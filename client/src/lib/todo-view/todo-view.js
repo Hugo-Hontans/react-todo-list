@@ -4,8 +4,8 @@ import { TodoList } from "../todo-list/todo-list.js";
 import { TodoAdd } from "../todo-add/todo-add";
 import { TodoRemove } from "../todo-remove/todo-remove";
 import { useParams, Redirect } from "react-router-dom";
-import { FormGroup, FormControl } from "react-bootstrap";
 import { TodoNameEdit } from '../todo-name-edit/todo-name-edit.';
+import { TodoNameInput } from '../todo-name-input/todo-name-input';
 
 export function TodoView(props) {
   let { id } = useParams();
@@ -28,13 +28,7 @@ export function TodoView(props) {
         {
           isTitle
           ? <h1 className="todo-name">{currentTodo.name}</h1>
-          : (<FormGroup className="col-6 col-lg-5 todo-group">
-              <FormControl
-                type="text"
-                value={currentTodo.name}
-                onChange={handleChange}
-              />
-            </FormGroup>)
+          : <TodoNameInput name={currentTodo.name} handleChange={handleChange}></TodoNameInput>
         }
         <TodoNameEdit changeName={changeName}></TodoNameEdit>
         <TodoRemove removeTodo={() => props.removeTodoList(currentTodo.id)}></TodoRemove>
